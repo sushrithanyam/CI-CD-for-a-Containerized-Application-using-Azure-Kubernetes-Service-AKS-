@@ -15,7 +15,7 @@ The solution includes monitoring and observability using Azure Monitor and Prome
 
 ## Architecture Diagram
 
-![Architecture](screenshots/architecture.png)
+![alt text](screenshots/architecture.png)
 
 ### Workflow
 
@@ -187,6 +187,8 @@ kubectl get deployments
 ```
 
 ---
+## Final RG
+![alt text](screenshots/RG.png)
 
 ## Key Achievements
 
