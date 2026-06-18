@@ -20,7 +20,7 @@ spec:
       containers:
       - name: cloudops-dashboard
 
-        image: cloudopsacr12345.azurecr.io/cloudops-dashboard:v1
+        image: cloudopsacr12345.azurecr.io/cloudops-dashboard:latest
 
         imagePullPolicy: Always
 
