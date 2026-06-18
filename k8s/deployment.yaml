@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cloudops-dashboard
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: cloudops-dashboard
+
+  template:
+    metadata:
+      labels:
+        app: cloudops-dashboard
+
+    spec:
+      containers:
+      - name: cloudops-dashboard
+
+        image: cloudopsacr12345.azurecr.io/cloudops-dashboard:v1
+
+        imagePullPolicy: Always
+
+        ports:
+        - containerPort: 5000

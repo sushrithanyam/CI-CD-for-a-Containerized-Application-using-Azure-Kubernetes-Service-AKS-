@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: cloudops-dashboard-service
+
+spec:
+  selector:
+    app: cloudops-dashboard
+
+  ports:
+  - port: 80
+    targetPort: 5000
+
+  type: LoadBalancer
