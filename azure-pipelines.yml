@@ -26,7 +26,7 @@ stages:
       displayName: Build and Push to ACR
 
       inputs:
-        containerRegistry: 'azure-subscription-connection'
+        containerRegistry: 'acr-connection'
         repository: $(imageName)
         command: buildAndPush
         Dockerfile: Dockerfile
