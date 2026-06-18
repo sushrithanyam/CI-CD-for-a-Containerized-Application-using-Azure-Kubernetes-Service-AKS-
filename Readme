@@ -1,9 +1,5 @@
 # CI/CD for a Containerized Application using Azure Kubernetes Service (AKS)
 
-![Azure](https://img.shields.io/badge/Azure-AKS-blue)
-![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5)
-![Azure DevOps](https://img.shields.io/badge/Azure%20DevOps-CI%2FCD-blueviolet)
 
 ## Project Overview
 
