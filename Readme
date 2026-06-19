@@ -1,46 +1,77 @@
-# CI/CD for a Containerized Application using Azure Kubernetes Service (AKS)
+# 🚀 CI/CD for a Containerized Application using Azure Kubernetes Service (AKS)
 
 
-## Project Overview
+## 📌 Project Overview
 
-This project demonstrates a complete DevOps workflow using Azure services. A modern web application is containerized with Docker, stored in Azure Container Registry (ACR), and automatically deployed to Azure Kubernetes Service (AKS) through Azure DevOps CI/CD pipelines.
+This project demonstrates an end-to-end DevOps workflow on Microsoft Azure.
 
-The solution includes monitoring and observability using Azure Monitor and Prometheus.
+A modern containerized web application is:
 
----
+* Built using Docker
+* Stored in Azure Container Registry (ACR)
+* Automatically deployed to Azure Kubernetes Service (AKS)
+* Managed through Azure DevOps CI/CD Pipelines
+* Monitored using Azure Monitor and Prometheus
 
-## Architecture Diagram
-
-![alt text](screenshots/architecture.png)
-
-### Workflow
-
-1. Developer pushes code to Azure Repos
-2. Azure DevOps Pipeline triggers automatically
-3. Docker image is built
-4. Image is pushed to Azure Container Registry (ACR)
-5. Kubernetes manifests are applied to AKS
-6. Application is exposed using a LoadBalancer Service
-7. Azure Monitor and Prometheus collect metrics
+The objective is to showcase a complete cloud-native deployment pipeline following DevOps best practices.
 
 ---
 
-## Technologies Used
+# 🏗 Solution Architecture
 
-| Technology               | Purpose                 |
-| ------------------------ | ----------------------- |
-| Azure DevOps             | CI/CD Pipeline          |
-| Docker                   | Containerization        |
-| Azure Container Registry | Image Repository        |
-| Azure Kubernetes Service | Container Orchestration |
-| Kubernetes               | Deployment Management   |
-| Azure Monitor            | Monitoring              |
-| Prometheus               | Metrics Collection      |
-| HTML/CSS/JavaScript      | Frontend Application    |
+![Architecture](screenshots/architecture.png)
+
+## Workflow
+
+```text
+Developer
+    │
+    ▼
+Azure Repos
+    │
+    ▼
+Azure DevOps Pipeline
+    │
+    ├── Build Docker Image
+    └── Push Image to ACR
+            │
+            ▼
+Azure Container Registry
+            │
+            ▼
+Azure Kubernetes Service (AKS)
+            │
+            ▼
+Kubernetes Deployment
+            │
+            ▼
+LoadBalancer Service
+            │
+            ▼
+Users
+
+Monitoring:
+AKS → Prometheus → Azure Monitor
+```
 
 ---
 
-## Repository Structure
+# 🛠 Technologies Used
+
+| Technology                     | Purpose                 |
+| ------------------------------ | ----------------------- |
+| Azure DevOps                   | CI/CD Automation        |
+| Docker                         | Containerization        |
+| Azure Container Registry (ACR) | Container Image Storage |
+| Azure Kubernetes Service (AKS) | Kubernetes Cluster      |
+| Kubernetes                     | Container Orchestration |
+| Azure Monitor                  | Monitoring & Insights   |
+| Prometheus                     | Metrics Collection      |
+| HTML / CSS / JavaScript        | Frontend Application    |
+
+---
+
+# 📂 Repository Structure
 
 ```text
 cloudops-dashboard/
@@ -54,15 +85,18 @@ cloudops-dashboard/
 │   ├── kubectl-services.png
 │   ├── application-homepage.png
 │   ├── azure-monitor.png
-│   └── prometheus.png
+│   ├── prometheus.png
 │
 ├── static/
-|    └── style.css
+│   └── style.css
+│
 ├── templates/
-|    └── index.html
+│   └── index.html
+│
 ├── k8s/
-├    ├── deployment.yaml
-|    └── service.yaml
+│   ├── deployment.yaml
+│   └── service.yaml
+│
 ├── Dockerfile
 ├── azure-pipelines.yml
 └── README.md
@@ -70,170 +104,212 @@ cloudops-dashboard/
 
 ---
 
-## CI/CD Pipeline
+# 🔄 CI/CD Pipeline
 
-### Azure DevOps Pipeline
+The Azure DevOps pipeline consists of two stages.
 
-The pipeline consists of two stages:
-
-### Build Stage
+## Stage 1 — Build
 
 * Checkout source code
 * Build Docker image
 * Push image to Azure Container Registry
 
+## Stage 2 — Deploy
+
+* Connect to AKS Cluster
+* Apply Kubernetes manifests
+* Deploy application
+* Expose service through Azure Load Balancer
+
+## Successful Pipeline Execution
+
+### Build Stage
+
+![Pipeline Build](screenshots/pipeline-success-2.png)
+
 ### Deploy Stage
 
-* Connect to AKS cluster
-* Deploy Kubernetes manifests
-* Expose application through LoadBalancer
-
-### Successful Pipeline Execution
-![alt text](screenshots/pipeline-success-2.png)
-![alt text](screenshots/pipeline-success-2.1.png)
----
-
-## Azure Container Registry
-
-Docker images are stored in Azure Container Registry before deployment.
-
-![alt text](screenshots/acr-repository-3.png)
+![Pipeline Deploy](screenshots/pipeline-success-2.1.png)
 
 ---
 
-## Azure Kubernetes Service (AKS)
+# 📦 Azure Container Registry (ACR)
 
-AKS hosts and manages the application containers.
+The Docker image generated by the build pipeline is stored securely inside Azure Container Registry before deployment.
+
+![ACR](screenshots/acr-repository-3.png)
+
+---
+
+# ☸ Azure Kubernetes Service (AKS)
+
+AKS provides managed Kubernetes infrastructure for hosting containerized workloads.
 
 ### AKS Cluster Overview
 
-![alt text](screenshots/aks-cluster-4.png)
+![AKS Cluster](screenshots/aks-cluster-4.png)
 
 ---
 
-## Kubernetes Deployment
+# 🚀 Kubernetes Deployment
 
-### Running Pods
-
-![alt text](screenshots/kubectl-pods-5.png)
-### Services
-
-![alt text](screenshots/kubectl-services-6.png)
-
-The application is exposed through a Kubernetes LoadBalancer Service and receives a public IP address.
-
----
-
-## Application Deployment
-
-### Live Application
-
-![alt text](screenshots/application-homepage-7.png)
-
-The application is accessible through the external LoadBalancer IP assigned by AKS.
-
----
-
-## Monitoring and Observability
-
-### Azure Monitor
-
-Azure Monitor provides:
-
-* Cluster health monitoring
-* CPU utilization metrics
-* Memory utilization metrics
-* Pod and node insights
-
-![alt text](screenshots/azure-monitor-8.1.png) 
-![alt text](screenshots/azure-monitor-8.2.png) 
-![alt text](screenshots/azure-monitor-8.3.png) 
-![alt text](screenshots/azure-monitor-8.4.png) 
-![alt text](screenshots/azure-monitor-8.5.png) 
-![alt text](screenshots/azure-monitor-8.png)
-
----
-
-### Prometheus
-
-Prometheus collects Kubernetes and container metrics for observability.
-
-![alt text](screenshots/prometheus-9.png)
-
----
-
-## Deployment Verification
-
-### Verify Pods
+## Running Pods
 
 ```bash
 kubectl get pods
 ```
 
-### Verify Services
+![Pods](screenshots/kubectl-pods-5.png)
+
+## Running Services
 
 ```bash
 kubectl get svc
 ```
 
-### Verify Deployment
+![Services](screenshots/kubectl-services-6.png)
+
+The application is exposed using a Kubernetes LoadBalancer Service which automatically provisions a public Azure Load Balancer and Public IP.
+
+---
+
+# 🌐 Application Deployment
+
+## Live Application
+
+![Application](screenshots/application-homepage-7.png)
+
+The application is accessible through the external IP assigned by AKS.
+
+---
+
+# 📊 Monitoring & Observability
+
+## Azure Monitor
+
+Azure Monitor provides:
+
+* Cluster Health Monitoring
+* CPU Usage Metrics
+* Memory Utilization Metrics
+* Node Insights
+* Container Insights
+* Log Analytics Integration
+
+### Monitoring Dashboards
+
+![Azure Monitor](screenshots/azure-monitor-8.1.png)
+
+![Azure Monitor](screenshots/azure-monitor-8.2.png)
+
+![Azure Monitor](screenshots/azure-monitor-8.3.png)
+
+![Azure Monitor](screenshots/azure-monitor-8.4.png)
+
+![Azure Monitor](screenshots/azure-monitor-8.5.png)
+
+![Azure Monitor](screenshots/azure-monitor-8.png)
+
+---
+
+## Prometheus Metrics
+
+Prometheus was enabled during AKS provisioning to collect Kubernetes cluster and container metrics.
+
+![Prometheus](screenshots/prometheus-9.png)
+
+---
+
+# ✅ Deployment Verification
+
+## Verify Pods
+
+```bash
+kubectl get pods
+```
+
+## Verify Services
+
+```bash
+kubectl get svc
+```
+
+## Verify Deployments
 
 ```bash
 kubectl get deployments
 ```
 
 ---
-## Final RG
-![alt text](screenshots/RG.png)
 
-## Key Achievements
+# 📁 Azure Resource Group
 
-✔ Containerized application using Docker
+All resources were deployed inside:
 
-✔ Stored images in Azure Container Registry
+Resource Group:
 
-✔ Implemented Azure DevOps CI/CD Pipeline
+```text
+rg-cloudops
+```
 
-✔ Deployed application to AKS
-
-✔ Configured Kubernetes Deployment and Service
-
-✔ Exposed application using LoadBalancer
-
-✔ Enabled Azure Monitor
-
-✔ Enabled Prometheus Monitoring
-
-✔ Achieved automated deployment workflow
+![Resource Group](screenshots/RG.png)
 
 ---
 
-## Future Enhancements
+# 🎯 Key Achievements
 
-* Horizontal Pod Autoscaling (HPA)
+✔ Containerized Application using Docker
+
+✔ Private Image Storage using Azure Container Registry
+
+✔ Automated CI/CD using Azure DevOps
+
+✔ Kubernetes Deployment on AKS
+
+✔ Service Exposure using Azure LoadBalancer
+
+✔ Monitoring using Azure Monitor
+
+✔ Metrics Collection using Prometheus
+
+✔ End-to-End DevOps Automation
+
+✔ Production-Style Cloud Deployment
+
+---
+
+# 🔮 Future Enhancements
+
+* Horizontal Pod Autoscaler (HPA)
 * Grafana Dashboards
-* HTTPS using Ingress Controller
-* Blue-Green Deployment
+* Kubernetes Ingress Controller
+* HTTPS with TLS Certificates
+* Blue-Green Deployments
 * Canary Releases
 * GitOps using ArgoCD
+* Infrastructure as Code using Terraform
 
 ---
 
-## Learning Outcomes
+# 📚 Learning Outcomes
 
-This project provided hands-on experience with:
+Through this project, I gained practical experience in:
 
-* Cloud-native application deployment
-* Kubernetes orchestration
-* CI/CD automation
-* Container lifecycle management
-* Infrastructure monitoring
-* Azure cloud services integration
+* Containerization with Docker
+* Kubernetes Deployments & Services
+* Azure Kubernetes Service (AKS)
+* Azure Container Registry (ACR)
+* Azure DevOps CI/CD Pipelines
+* Monitoring & Observability
+* Cloud-Native Application Deployment
+* Production Deployment Workflows
 
 ---
 
-## Author
+# 👨‍💻 Author
 
-Sushruth
+**Sushrith**
 
-DevOps | Cloud Computing | Azure Kubernetes Service (AKS)
+DevOps Engineer | Cloud Enthusiast | Azure & Kubernetes
+
+⭐ If you found this project useful, consider giving it a star.
