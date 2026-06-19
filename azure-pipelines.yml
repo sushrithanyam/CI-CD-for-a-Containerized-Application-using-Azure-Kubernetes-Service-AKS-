@@ -20,17 +20,9 @@ stages:
   - job: BuildPush
     steps:
 
-    # 🔴 IMPORTANT: pulls your repo into pipeline workspace
+    # IT pulls repo into pipeline workspace
     - checkout: self
-
-    # 🔴 DEBUG: confirms what files exist in pipeline
-    - script: |
-        echo "=== REPO INFO ==="
-        pwd
-        ls -R $(Build.SourcesDirectory)
-      displayName: "DEBUG: workspace check"
-
-    # Build + push image
+    
     - task: Docker@2
       displayName: Build and Push to ACR
       inputs:
@@ -58,7 +50,6 @@ stages:
         deploy:
           steps:
 
-          # 🔴 IMPORTANT: ensures repo is available in deploy stage too
           - checkout: self
 
           # Deploy manifests
